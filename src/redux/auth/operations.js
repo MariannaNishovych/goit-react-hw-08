@@ -22,7 +22,7 @@ return thunkAPI.rejectWithValue(error.message);
 }
 });
 
-export const login = createAsyncThunk('auth/login', async(credentials, thunkAPI) => {
+export const logIn = createAsyncThunk('auth/login', async(credentials, thunkAPI) => {
     try {
         const response = await axios.post('/users/login', credentials);
         setAuthHeader(response.data.token);
@@ -32,7 +32,7 @@ export const login = createAsyncThunk('auth/login', async(credentials, thunkAPI)
     }
     });
 
-    export const logout  = createAsyncThunk('auth/logout', async(_, thunkAPI) => {
+    export const logOut  = createAsyncThunk('auth/logout', async(_, thunkAPI) => {
         try {
             await axios.post('/users/logout');
             clearAuthHeader();

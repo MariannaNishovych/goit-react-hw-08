@@ -34,12 +34,13 @@ const ContactForm = () => {
   const numberId = useId();
 
   const handleSubmit = (values, actions) => {
-    const onAddContact = {
+    const newContact = {
       id: nanoid(),
       name: values.name,
       number: values.number,
     };
-    dispatch(addContact(onAddContact));
+
+    dispatch(addContact(newContact));
 
     actions.resetForm();
   };

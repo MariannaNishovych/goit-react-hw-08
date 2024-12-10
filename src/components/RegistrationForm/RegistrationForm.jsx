@@ -17,7 +17,11 @@ const RegistrationForm = () => {
     };
 
     const handleSubmit = (values, options) => {
-        dispatch(register(values));
+        dispatch(register({
+            name: values.name.trim(),
+            email: values.email.trim(),
+            password: values.password.trim(),
+        }));
         options.resetForm();
     };
 

@@ -27,15 +27,15 @@ state.items = state.items.filter(item => item.id !== action.payload.id);
             return initialState;
         })
         .addMatcher(isAnyOf(fetchContacts.pending, deleteContact.pending, addContact.pending), (state) => {
-            state.isError = false;
-            state.isLoading = true;
+            state.error = false;
+            state.loading = true;
         })
         .addMatcher(isAnyOf(fetchContacts.rejected, deleteContact.rejected, addContact.rejected), (state, action) => {
-            state.isError = action.payload;
-            state.isLoading = false;
+            state.error = action.payload;
+            state.loading = false;
         })
         .addMatcher(isAnyOf(fetchContacts.fulfilled, deleteContact.fulfilled, addContact.fulfilled), (state) => {
-            state.isLoading = false;
+            state.loading = false;
         })
     }
 });

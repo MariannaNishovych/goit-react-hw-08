@@ -27,3 +27,4 @@ const Contact = ({ id, name, number, onDelete }) => {
 };
 
 export default Contact;
+

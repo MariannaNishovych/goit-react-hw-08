@@ -3,6 +3,7 @@ import css from './LoginForm.module.css';
 import { useDispatch } from "react-redux";
 import { logIn } from '../../redux/auth/operations';
 import * as Yup from 'yup';
+import toast from "react-hot-toast";
 
 
 
@@ -15,10 +16,28 @@ const LoginForm = () => {
         password: '',
     }
 
-    const handleSubmit = (values, options) => {
-        dispatch(logIn(values));
-        options.resetForm();
-    }
+    const handleSubmit = (values, actions) => {
+        if (!values.email || !values.password) {
+        toast('Field is empty');
+        return;
+        }
+    
+        dispatch(
+        logIn({
+            email: values.email.trim(),
+            password: values.password.trim(),
+        })
+        )
+        .unwrap()
+        .then(() => {
+            toast.success('Login success');
+        })
+        .catch(() => {
+            toast.error('Login error');
+        });
+    
+        actions.resetForm();
+    };
     
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -36,6 +55,7 @@ const LoginForm = () => {
     <Formik onSubmit={handleSubmit} 
     initialValues={initialValues} 
     validationSchema={validationSchema}>
+        
         <Form className={css.form}>
             <label className={css.label}>
                 Email

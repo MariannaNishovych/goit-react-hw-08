@@ -1,10 +1,10 @@
 import { DNA } from 'react-loader-spinner'
 import css from './Loader.module.css'
 
-export const Loader = () => {
+const Loader = () => {
   return (
     <div className={css.loader}>
-        <DNA
+      <DNA
     visible={true}
     height="80"
     width="80"
@@ -14,4 +14,6 @@ export const Loader = () => {
     />
     </div>
   )
-}
+};
+
+export default Loader;

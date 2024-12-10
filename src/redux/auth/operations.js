@@ -1,20 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
-axios.defaults.baseURL = 'https://connections-api.goit.global/';
+export const goitApi = axios.create({
+    baseURL: 'https://connections-api.goit.global/',
+  });
+// axios.defaults.baseURL = 'https://connections-api.goit.global/';
 
 const setAuthHeader = (token) => {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    goitApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 const clearAuthHeader = () => {
-    axios.defaults.headers.common.Authorization = '';
+    goitApi.defaults.headers.common.Authorization = '';
 };
 
 export const register = createAsyncThunk('auth/register', async(credentials, thunkAPI) => {
 try {
-    const response = await axios.post('/users/signup', credentials);
+    const response = await goitApi.post('/users/signup', credentials);
     setAuthHeader(response.data.token);
     return response.data;
 } catch (error) {
@@ -24,7 +26,7 @@ return thunkAPI.rejectWithValue(error.message);
 
 export const logIn = createAsyncThunk('auth/login', async(credentials, thunkAPI) => {
     try {
-        const response = await axios.post('/users/login', credentials);
+        const response = await goitApi.post('/users/login', credentials);
         setAuthHeader(response.data.token);
         return response.data;
     } catch (error) {
@@ -34,7 +36,7 @@ export const logIn = createAsyncThunk('auth/login', async(credentials, thunkAPI)
 
     export const logOut  = createAsyncThunk('auth/logout', async(_, thunkAPI) => {
         try {
-            await axios.post('/users/logout');
+            await goitApi.post('/users/logout');
             clearAuthHeader();
         } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -50,7 +52,7 @@ export const logIn = createAsyncThunk('auth/login', async(credentials, thunkAPI)
         
         try {
             setAuthHeader(persistedToken);
-            const response = await axios.get('/users/me');
+            const response = await goitApi.get('/users/current');
             return response.data;
             } catch (error) {
             return thunkAPI.rejectWithValue(error.message);

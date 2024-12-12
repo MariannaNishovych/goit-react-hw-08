@@ -12,11 +12,11 @@ const UserMenu = () => {
     <div className={css.container}>
         <h2 className={css.title}>Welcome, {user.name}!</h2>
         <button className={css.btn} type='submit'
-        onClick={() => dispatch(logOut())}>
+        onClick={() => {dispatch(logOut())}}>
               Logout
               </button>
     </div>
-  )
+  );
 };
 
 export default UserMenu;

@@ -42,4 +42,4 @@ state.items = state.items.filter(item => item.id !== action.payload.id);
 
 
 export const contactsReducer = contactsSlice.reducer;
-export default contactsSlice.reducer;
+// export default contactsSlice.reducer;

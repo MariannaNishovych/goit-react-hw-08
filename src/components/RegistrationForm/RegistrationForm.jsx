@@ -3,12 +3,14 @@ import { Field, Form, Formik } from 'formik';
 import css from './RegistrationForm.module.css';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
+import toast from 'react-hot-toast';
 
 
 const RegistrationForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const initialValues = {
         name: '',
@@ -17,13 +19,23 @@ const RegistrationForm = () => {
     };
 
     const handleSubmit = (values, options) => {
-        dispatch(register({
-            name: values.name.trim(),
-            email: values.email.trim(),
-            password: values.password.trim(),
-        }));
+        dispatch(register(values));
         options.resetForm();
     };
+
+    // const handleSubmit = (values, options) => {
+    //     dispatch(register(values))
+    //     .unwrap()
+    //     .then(() => {
+    //         toast.success("Registration successful!");
+    
+    //         navigate("/contacts");
+    //     })
+    //     .catch(() => {
+    //         toast.error("Registration failed. Please try again.");
+    //     });
+    //     options.resetForm();
+    // };
 
     const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -41,32 +53,29 @@ const RegistrationForm = () => {
         .required("Password is required"),
     })
 
-  return (
+return (
     <Formik initialValues={initialValues} 
     onSubmit={handleSubmit}
     validationSchema={validationSchema}>
 <Form className={css.form}>
     <label className={css.label}>
         Username
-        <Field className={css.input} type='text' name='name' />    
+        <Field className={css.input} type='text' name='name' placeholder='Enter your name' />    
     </label>
     <label className={css.label}>
         Email
-        <Field className={css.input} type='email' name='email' />    
+        <Field className={css.input} type='email' name='email' placeholder='Enter your email' />    
     </label>
     <label className={css.label}>
         Password
-        <Field className={css.input} type='password' name='password' />    
+        <Field className={css.input} type='password' name='password' placeholder='Enter your password' />    
     </label>
     <button type='submit' className={css.regBtn}>
         Register
     </button>
-    <p className={css.text}>
-        Do you already have an account?<Link to='/login'></Link>
-        </p>
 </Form>
     </Formik>
-  );
+);
 };
 
 export default RegistrationForm;

@@ -14,18 +14,24 @@ const Navigation = () => {
         return clsx(css.link, isActive && css.active);
     }
 
-  return (
-    <nav className={css.nav}>
-        <NavLink className={setClass} to='/'>
-        Home
-        </NavLink>
-        {isLoggedIn && (
-            <NavLink className={setClass} to='/contacts'>
-            Contacts  
+    return (
+      <div>
+        <ul className={css.list}>
+          <li className={css.item}>
+            <NavLink className={setClass} to="/">
+              Home
             </NavLink>
-        )}
-    </nav>
-  )
+          </li>
+          {isLoggedIn && (
+            <li className={css.item}>
+              <NavLink className={setClass} to="/contacts">
+                Contacts
+              </NavLink>
+            </li>
+          )}
+        </ul>
+      </div>
+    );
 }
 
 export default Navigation

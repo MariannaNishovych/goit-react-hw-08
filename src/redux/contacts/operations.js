@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+// import axios from "axios";
 
 import { goitApi } from "../auth/operations";
 
@@ -14,9 +15,9 @@ export const fetchContacts = createAsyncThunk('contacts/fetchAll', async(_, thun
     }
 });
 
-export const deleteContact = createAsyncThunk('contacts/deleteContact', async(id, thunkAPI) => {
+export const deleteContact = createAsyncThunk('contacts/deleteContact', async(contactId, thunkAPI) => {
     try {
-        const response = await goitApi.delete(`/contacts/${id}`)
+        const response = await goitApi.delete(`/contacts/${contactId}`)
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);

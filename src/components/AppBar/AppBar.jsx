@@ -18,4 +18,4 @@ const AppBar = () => {
   )
 }
 
-export default AppBar
+export default AppBar;

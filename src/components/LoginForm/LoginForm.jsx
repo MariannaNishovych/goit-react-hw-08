@@ -1,9 +1,11 @@
 import { Field, Form, Formik } from "formik";
 import css from './LoginForm.module.css';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from '../../redux/auth/operations';
 import * as Yup from 'yup';
 import toast from "react-hot-toast";
+import { selectIsLogged } from "../../redux/auth/selectors";
+import { Navigate } from "react-router-dom";
 
 
 
@@ -11,33 +13,21 @@ const LoginForm = () => {
 
     const dispatch = useDispatch();
 
+    const isLoggedIn = useSelector(selectIsLogged);
+
     const initialValues = {
         email: '',
         password: '',
     }
 
     const handleSubmit = (values, actions) => {
-        if (!values.email || !values.password) {
-        toast('Field is empty');
-        return;
-        }
-    
-        dispatch(
-        logIn({
-            email: values.email.trim(),
-            password: values.password.trim(),
-        })
-        )
-        .unwrap()
-        .then(() => {
-            toast.success('Login success');
-        })
-        .catch(() => {
-            toast.error('Login error');
-        });
-    
-        actions.resetForm();
+        dispatch(logIn(values));
+    actions.resetForm();
     };
+
+    if (isLoggedIn) {
+        return <Navigate to="/" />;
+    }
     
     const validationSchema = Yup.object().shape({
         email: Yup.string()

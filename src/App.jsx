@@ -14,13 +14,13 @@ import { refreshUser } from './redux/auth/operations';
 import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegistrationPage = lazy(() => import('./pages/RegistrationPage/RegistrationPage'));
-
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'))
 
 function App() {
 

@@ -1,0 +1,18 @@
+
+
+.title{
+    color: #1c053f;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.text{
+    color: #501b9f;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 1.5;
+    text-align: center;
+}

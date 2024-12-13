@@ -4,19 +4,25 @@ align-items: center;
 justify-content: center;  
 }
 
-/* .link {
-    display: inline-block;
-    text-decoration: none;
-    padding: 12px;
-    font-weight: 700;
-    color: white;
-    transition: transform 0.3s ease;
-  }
-  
-  .link:hover {
-    transform: scale(1.07);
-  }
-  
-  .link.active {
-    color: black;
-  } */
+
+.active{
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: rgb(13, 2, 44);
+  white-space: nowrap;
+  font-size: 30px;
+}
+
+.noActive{
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
+  font-size: 30px;
+}
+

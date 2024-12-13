@@ -1,8 +1,9 @@
 .wrapper{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-    border-bottom: 1px solid rgb(17, 16, 16);
-    /* min-width: 1200px; */
+    width: 100wh;
+    padding: 15px 30px;
+    margin: 0 auto 30px auto;
+    background-color: rgba(86, 118, 233, 0.7);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }

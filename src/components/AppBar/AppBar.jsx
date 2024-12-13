@@ -10,12 +10,10 @@ const AppBar = () => {
     const isLogged = useSelector(selectIsLogged)
   return (
     <header className={css.wrapper}>
-        <nav className={css.menu}>
 <Navigation />
 {isLogged ? <UserMenu /> : <AuthNav />}
-        </nav>
     </header>
-  )
-}
+  );
+};
 
 export default AppBar;

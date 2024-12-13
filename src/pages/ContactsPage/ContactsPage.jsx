@@ -21,10 +21,11 @@ const ContactsPage = () => {
     
   return (
     <div className={css.container}>
+      {loading && <Loader />}
+      {error && <p>Something went wrong..</p>}
+      <h1>Phonebook</h1>
 <ContactForm />
 <SearchBox />
-{loading && <Loader />}
-{error && <p>Something went wrong..</p>}
 <ContactList />
     </div>
   )

@@ -1,16 +1,22 @@
 .link {
-  text-decoration-line: none;
-  color: #657af1;
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .active {
-  color: aliceblue;
-  font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #050737;
 }
 
 .list {
   display: flex;
-  gap: 20px;
+  gap: 40px;
   list-style: none;
 }
 

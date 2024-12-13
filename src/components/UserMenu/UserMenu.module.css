@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.title{
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 1.5;
+    padding: 10px;
+}
+
+.btn{
+    border: none;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #430fbe;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 1.5;
+}

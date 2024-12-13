@@ -6,7 +6,7 @@ import { selectNameFilter } from '../../redux/filters/selectors';
 const SearchBox = () => {
   const dispatch = useDispatch();
 
-  const filter = useSelector(selectNameFilter) || '';
+  const filter = useSelector(selectNameFilter);
   
   const handleFilter = (evt) => {
     dispatch(setFilterValue(evt.target.value));

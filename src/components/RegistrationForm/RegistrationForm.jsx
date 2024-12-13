@@ -19,23 +19,18 @@ const RegistrationForm = () => {
     };
 
     const handleSubmit = (values, options) => {
-        dispatch(register(values));
+        dispatch(register(values))
+        .unwrap()
+        .then(() => {
+            toast.success("Registration successful!");
+    
+            navigate("/contacts");
+        })
+        .catch(() => {
+            toast.error("Registration failed. Please try again.");
+        });
         options.resetForm();
     };
-
-    // const handleSubmit = (values, options) => {
-    //     dispatch(register(values))
-    //     .unwrap()
-    //     .then(() => {
-    //         toast.success("Registration successful!");
-    
-    //         navigate("/contacts");
-    //     })
-    //     .catch(() => {
-    //         toast.error("Registration failed. Please try again.");
-    //     });
-    //     options.resetForm();
-    // };
 
     const validationSchema = Yup.object().shape({
     name: Yup.string()

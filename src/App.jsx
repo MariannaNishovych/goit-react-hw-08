@@ -1,13 +1,13 @@
 import './App.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { lazy, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 
 import Loader from './components/Loader/Loader';
 import Layout from './components/Layout';
 
-import { RestrictedRoute } from './components/RestrictedRoute';
-import { PrivateRoute } from './components/PrivateRoute';
+import RestrictedRoute from './components/RestrictedRoute';
+import PrivateRoute from './components/PrivateRoute';
 
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
@@ -31,42 +31,70 @@ function App() {
     dispatch(refreshUser())
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <Loader />
-  ) : (
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<RegistrationPage />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<LoginPage />}
-              />
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        <Toaster position="top-center" reverseOrder={false} />
-      </Layout>
+ if (isRefreshing) return <p>User is refreshing, please wait...</p>
+ 
+  return (
+    <div>
+      <Layout></Layout>
+      <main>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/register"
+              element={<RestrictedRoute component={<RegistrationPage />} />}
+            />
+            <Route
+              path="/login"
+              element={<RestrictedRoute component={<LoginPage />} />}
+            />
+            <Route
+              path="/contacts"
+              element={<PrivateRoute component={<ContactsPage />} />}
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </main>
+    </div>
   );
 };
 
 export default App;
+
+ // return isRefreshing ? (
+  //   <Loader />
+  // ) : (
+  //     <Layout>
+  //       <Routes>
+  //         <Route path="/" element={<HomePage />} />
+
+  //         <Route
+  //           path="/register"
+  //           element={
+  //             <RestrictedRoute
+  //               redirectTo="/contacts"
+  //               component={<RegistrationPage />}
+  //             />
+  //           }
+  //         />
+  //         <Route
+  //           path="/login"
+  //           element={
+  //             <RestrictedRoute
+  //               redirectTo="/contacts"
+  //               component={<LoginPage />}
+  //             />
+  //           }
+  //         />
+  //         <Route
+  //           path="/contacts"
+  //           element={
+  //             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+  //           }
+  //         />
+  //         <Route path="*" element={<NotFoundPage />} />
+  //       </Routes>
+  //       <Toaster position="top-center" reverseOrder={false} />
+  //     </Layout>
+  // );

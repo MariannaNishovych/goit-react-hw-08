@@ -15,21 +15,18 @@ export const fetchContacts = createAsyncThunk('contacts/fetchAll', async(_, thun
     }
 });
 
-export const deleteContact = createAsyncThunk('contacts/deleteContact', async(contactId, thunkAPI) => {
+export const deleteContact = createAsyncThunk('contacts/deleteContact', async(id, thunkAPI) => {
     try {
-        const response = await goitApi.delete(`/contacts/${contactId}`)
+        const response = await goitApi.delete(`/contacts/${id}`)
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
     }
 });
 
-export const addContact = createAsyncThunk('contacts/addContact', async(newContact, thunkAPI) => {
+export const addContact = createAsyncThunk('contacts/addContact', async (newContact, thunkAPI) => {
     try {
-        const response = await goitApi.post('/contacts', {
-            name: newContact.name,
-            number: newContact.number,
-        });
+        const response = await goitApi.post('/contacts', newContact);
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);

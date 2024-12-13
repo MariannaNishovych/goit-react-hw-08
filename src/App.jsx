@@ -12,7 +12,7 @@ import PrivateRoute from './components/PrivateRoute';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
 import { Route, Routes } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+
 
 
 
@@ -61,40 +61,3 @@ function App() {
 };
 
 export default App;
-
- // return isRefreshing ? (
-  //   <Loader />
-  // ) : (
-  //     <Layout>
-  //       <Routes>
-  //         <Route path="/" element={<HomePage />} />
-
-  //         <Route
-  //           path="/register"
-  //           element={
-  //             <RestrictedRoute
-  //               redirectTo="/contacts"
-  //               component={<RegistrationPage />}
-  //             />
-  //           }
-  //         />
-  //         <Route
-  //           path="/login"
-  //           element={
-  //             <RestrictedRoute
-  //               redirectTo="/contacts"
-  //               component={<LoginPage />}
-  //             />
-  //           }
-  //         />
-  //         <Route
-  //           path="/contacts"
-  //           element={
-  //             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
-  //           }
-  //         />
-  //         <Route path="*" element={<NotFoundPage />} />
-  //       </Routes>
-  //       <Toaster position="top-center" reverseOrder={false} />
-  //     </Layout>
-  // );

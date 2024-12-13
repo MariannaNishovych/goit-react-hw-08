@@ -4,7 +4,7 @@ import axios from 'axios';
 export const goitApi = axios.create({
     baseURL: 'https://connections-api.goit.global',
   });
-// axios.defaults.baseURL = 'https://connections-api.goit.global/';
+
 
 const setAuthHeader = (token) => {
     goitApi.defaults.headers.common.Authorization = `Bearer ${token}`;
